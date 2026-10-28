@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: netflix-clone
+
+resources:
+  - ../../base
+
+images:
+  - name: netflix-clone
+    newName: netflix-clone
+    newTag: staging # replace with actual image tag at deploy time

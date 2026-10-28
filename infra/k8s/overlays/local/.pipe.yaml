@@ -1,0 +1,21 @@
+apiVersion: pipecd.dev/v1beta1
+kind: KubernetesApp
+spec:
+  name: netflix-clone
+  labels:
+    env: local
+    app: netflix-clone
+  input:
+    namespace: netflix-clone
+    repoId: default
+    path: infra/k8s/overlays/local
+  pipeline:
+    stages:
+      - name: K8S_CANARY_ROLLOUT
+        with:
+          replicas: 1
+      - name: WAIT_APPROVAL
+        with:
+          timeout: 10m
+      - name: K8S_PRIMARY_ROLLOUT
+      - name: K8S_CANARY_CLEAN
