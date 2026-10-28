@@ -7,8 +7,6 @@ spec:
     app: netflix-clone
   input:
     namespace: netflix-clone
-    repoId: default
-    path: infra/k8s/overlays/local
   pipeline:
     stages:
       - name: K8S_CANARY_ROLLOUT
